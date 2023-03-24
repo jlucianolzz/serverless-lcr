@@ -1,0 +1,2 @@
+games: ${file(./serverless/functions/lcr_game.yml)}
+results: ${file(./serverless/functions/results.yml)}

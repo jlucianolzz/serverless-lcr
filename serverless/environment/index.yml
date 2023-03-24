@@ -1,0 +1,5 @@
+ENV: ${file(./serverless/environment/${opt:stage, 'development'}.yml):environment.NODE_ENV}
+REDIS_PASSWORD: ${file(./serverless/environment/${opt:stage, 'development'}.yml):environment.REDIS_PASSWORD}
+REDIS_HOST: ${file(./serverless/environment/${opt:stage, 'development'}.yml):environment.REDIS_HOST}
+REDIS_PORT: ${file(./serverless/environment/${opt:stage, 'development'}.yml):environment.REDIS_PORT}
+

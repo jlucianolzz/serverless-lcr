@@ -1,0 +1,10 @@
+handler: src/functions/lcr-game/controllers/handlerResults.main
+name: results-management
+description: results management
+events:
+  - sqs:
+      arn:
+        Fn::GetAtt:
+          - GameSQSQueue
+          - Arn
+

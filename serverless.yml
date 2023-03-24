@@ -1,0 +1,88 @@
+service: aws-lambda-lcr-service
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: ${opt:stage, 'development'}
+  profile: user-deploy-aws
+  region: sa-east-1
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+          Resource:
+            Fn::GetAtt: [GameDynamoDBTable, Arn]
+        - Effect: Allow
+          Action:
+            - events:PutEvents
+            - events:PutTargets
+            - events:PutRule
+            - events:DescribeRule
+            - events:RemoveTargets
+          Resource:
+            - Fn::GetAtt: [GameEventBus, Arn]
+            - Fn::GetAtt: [GameEventRule, Arn] 
+        - Effect: Allow
+          Action:
+            - sqs:SendMessage
+            - sqs:ReceiveMessage
+            - sqs:DeleteMessage 
+            - sqs:GetQueueAttributes
+          Resource: "*"
+  environment: ${file(./serverless/environment/index.yml)}
+
+functions: ${file(./serverless/functions/index.yml)}
+
+resources:
+  Resources:
+    GameDynamoDBTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: game-table
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+    GameSQSQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: game-sqs-queue.fifo
+        FifoQueue: true
+        ContentBasedDeduplication: true
+    GameEventBus:
+      Type: AWS::Events::EventBus
+      Properties:
+        Name: game-event-bus
+    GameEventRule:
+      Type: AWS::Events::Rule
+      Properties:
+        Name: game-event-rule
+        State: ENABLED
+        EventBusName: game-event-bus
+        EventPattern:
+          source:
+            - game-event-source
+          detail-type:
+            - game-event-type
+        Targets:
+          - Arn: !GetAtt GameSQSQueue.Arn
+            Id: game-event-target
+            SqsParameters:
+                MessageGroupId: game-event-group
+      DependsOn: 
+        - GameEventBus
+                
+plugins:
+  - serverless-offline
+  - serverless-esbuild
+  - serverless-dynamodb-local

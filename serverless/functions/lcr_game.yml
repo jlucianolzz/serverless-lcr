@@ -1,0 +1,13 @@
+handler: src/functions/lcr-game/controllers/handlerGame.main
+name: lcr-game-management
+description: lcr game management
+events:
+  - http:
+      path: api/lcr-game/start
+      method: get
+      cors:
+        origin: "*"
+        headers:
+          - Content-Type
+          - Access-Control-Allow-Origin
+          - Access-Control-Allow-Credentials

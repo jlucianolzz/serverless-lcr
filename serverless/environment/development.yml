@@ -1,0 +1,6 @@
+environment:
+  NODE_ENV: ${opt:stage, 'development'}
+  REDIS_PASSWORD: ""
+  REDIS_HOST: ""
+  REDIS_PORT: ""
+ 
