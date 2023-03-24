@@ -1,0 +1,300 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "LCR_GAME",
+    "description": "Implementation of the LCR game using cloud technologies.",
+    "termsOfService": "",
+    "contact": {},
+    "license": {
+      "name": ""
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://virtserver.swaggerhub.com/jlucianolzz/serverless-lcr/1.0.0",
+      "description": "SwaggerHub API Auto Mocking"
+    },
+    {
+      "url": "http://localhost:3000/development/api",
+      "description": ""
+    }
+  ],
+  "tags": [
+    {
+      "name": "Lcr Game"
+    }
+  ],
+  "paths": {
+    "/lcr-game/start": {
+      "get": {
+        "tags": [
+          "Lcr Game"
+        ],
+        "summary": "Start Game",
+        "description": "Start Game",
+        "operationId": "startGame",
+        "responses": {
+          "200": {
+            "description": "Start Game",
+            "headers": {
+              "Connection": {
+                "style": "simple",
+                "explode": false,
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Content-Length": {
+                "style": "simple",
+                "explode": false,
+                "schema": {
+                  "type": "string",
+                  "example": "405"
+                }
+              },
+              "Date": {
+                "style": "simple",
+                "explode": false,
+                "schema": {
+                  "type": "string",
+                  "example": "Fri, 24 Mar 2023 01:51:40 GMT"
+                }
+              },
+              "Via": {
+                "style": "simple",
+                "explode": false,
+                "schema": {
+                  "type": "string",
+                  "example": "1.1 d20f68507cbd4e84d17a7e1b013500e8.cloudfront.net (CloudFront)"
+                }
+              },
+              "X-Amz-Cf-Id": {
+                "style": "simple",
+                "explode": false,
+                "schema": {
+                  "type": "string",
+                  "example": "pIDbZdhrf-bpfy22v4o2dkwF1l7D91lb8C__9tZi4x5P9STr5Lttng=="
+                }
+              },
+              "X-Amz-Cf-Pop": {
+                "style": "simple",
+                "explode": false,
+                "schema": {
+                  "type": "string",
+                  "example": "LIM50-P2"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "style": "simple",
+                "explode": false,
+                "schema": {
+                  "type": "string",
+                  "example": "Root=1-641d022a-146b1d4960872d7703729125;Sampled=0"
+                }
+              },
+              "X-Cache": {
+                "style": "simple",
+                "explode": false,
+                "schema": {
+                  "type": "string",
+                  "example": "Miss from cloudfront"
+                }
+              },
+              "x-amz-apigw-id": {
+                "style": "simple",
+                "explode": false,
+                "schema": {
+                  "type": "string",
+                  "example": "CQ1GsG-pmjQFctQ="
+                }
+              },
+              "x-amzn-RequestId": {
+                "style": "simple",
+                "explode": false,
+                "schema": {
+                  "type": "string",
+                  "example": "8575c467-06a5-4ad1-a9f1-a02aef13adea"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200"
+                },
+                "examples": {
+                  "Start Game": {
+                    "value": {
+                      "message": "Game played",
+                      "results": [
+                        {
+                          "center": 3,
+                          "firma": "83ab8927-bbbe-42a4-b90c-74dd8e8a692e",
+                          "game": 1,
+                          "players": [
+                            {
+                              "chips": "0",
+                              "player": 1
+                            },
+                            {
+                              "chips": "0",
+                              "player": 2
+                            },
+                            {
+                              "chips": "6(W)",
+                              "player": 3
+                            }
+                          ]
+                        },
+                        {
+                          "center": 1,
+                          "firma": "bfa64620-0f30-4110-ac13-9888bd0ca34d",
+                          "game": 2,
+                          "players": [
+                            {
+                              "chips": "1",
+                              "player": 1
+                            },
+                            {
+                              "chips": "4",
+                              "player": 2
+                            },
+                            {
+                              "chips": "1",
+                              "player": 3
+                            },
+                            {
+                              "chips": "4(*)",
+                              "player": 4
+                            },
+                            {
+                              "chips": "4",
+                              "player": 5
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "inline_response_200": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Game played"
+          },
+          "results": {
+            "type": "array",
+            "example": [
+              {
+                "center": 3,
+                "firma": "83ab8927-bbbe-42a4-b90c-74dd8e8a692e",
+                "game": 1,
+                "players": [
+                  {
+                    "chips": "0",
+                    "player": 1
+                  },
+                  {
+                    "chips": "0",
+                    "player": 2
+                  },
+                  {
+                    "chips": "6(W)",
+                    "player": 3
+                  }
+                ]
+              },
+              {
+                "center": 1,
+                "firma": "bfa64620-0f30-4110-ac13-9888bd0ca34d",
+                "game": 2,
+                "players": [
+                  {
+                    "chips": "1",
+                    "player": 1
+                  },
+                  {
+                    "chips": "4",
+                    "player": 2
+                  },
+                  {
+                    "chips": "1",
+                    "player": 3
+                  },
+                  {
+                    "chips": "4(*)",
+                    "player": 4
+                  },
+                  {
+                    "chips": "4",
+                    "player": 5
+                  }
+                ]
+              }
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "center": {
+                  "type": "number",
+                  "example": 3
+                },
+                "firma": {
+                  "type": "string",
+                  "example": "83ab8927-bbbe-42a4-b90c-74dd8e8a692e"
+                },
+                "game": {
+                  "type": "number",
+                  "example": 1
+                },
+                "players": {
+                  "type": "array",
+                  "example": [
+                    {
+                      "chips": "0",
+                      "player": 1
+                    },
+                    {
+                      "chips": "0",
+                      "player": 2
+                    },
+                    {
+                      "chips": "6(W)",
+                      "player": 3
+                    }
+                  ],
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "chips": {
+                        "type": "string",
+                        "example": "0"
+                      },
+                      "player": {
+                        "type": "number",
+                        "example": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
